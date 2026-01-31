@@ -1,36 +1,43 @@
 # Dependencies
 node_modules/
+.pnp
+.pnp.js
 
-# Build output (adjust if you change outDir)
-dist/
+# Production
 build/
+dist/
+.next/
+out/
 
-# TypeScript build info
-*.tsbuildinfo
+# Misc
+.DS_Store
+*.pem
 
-# Env files
-.env
-.env.*
-!.env.example
-
-# Logs
-logs
-*.log
+# Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
 
-# Testing / coverage
+# Local env files
+.env.local
+.env.*.local
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Testing
 coverage/
 .nyc_output/
 
-# Editor / tooling
-.vscode/
-.idea/
+# Cache
 .eslintcache
-.stylelintcache
-
-# OS files
-.DS_Store
-Thumbs.db
+.turbo

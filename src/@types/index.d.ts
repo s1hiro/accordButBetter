@@ -1,0 +1,2 @@
+// Additional types
+export type {}
