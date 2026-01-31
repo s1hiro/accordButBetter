@@ -12,6 +12,7 @@ out/
 # Misc
 .DS_Store
 *.pem
+filetree.md
 
 # Debug
 npm-debug.log*
