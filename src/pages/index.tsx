@@ -1,12 +1,9 @@
-import React from 'react'
-import type { NextPage } from 'next'
+import { JSX } from 'react'
 
-const Home: NextPage = () => {
+export default function Home(): JSX.Element {
     return (
         <div>
             <h1>Welcome to Next.js with TypeScript</h1>
         </div>
     )
 }
-
-export default Home
