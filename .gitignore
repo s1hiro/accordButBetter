@@ -13,6 +13,7 @@ out/
 .DS_Store
 *.pem
 filetree.md
+resource*
 
 # Debug
 npm-debug.log*
