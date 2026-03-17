@@ -1,33 +1,62 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.10.0/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
-  },
-  "organizeImports": {
-    "enabled": true
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "style": {
-        "noImplicitBoolean": "warn"
-      }
-    }
-  },
-  "formatter": {
-    "enabled": true,
-    "indentSize": 2,
-    "lineWidth": 100,
-    "indentStyle": "space"
-  },
-  "javascript": {
+    "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
+    "assist": {
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "style": {
+                "noImplicitBoolean": "warn",
+                "noParameterAssign": "error",
+                "useAsConstAssertion": "warn",
+                "useDefaultParameterLast": "error",
+                "useEnumInitializers": "error",
+                "useSelfClosingElements": "error",
+                "useSingleVarDeclarator": "error",
+                "noUnusedTemplateLiteral": "error",
+                "useNumberNamespace": "error",
+                "noInferrableTypes": "error",
+                "noUselessElse": "error"
+            }
+        }
+    },
     "formatter": {
-      "enabled": true,
-      "indentSize": 2,
-      "lineWidth": 100
-    }
-  }
+        "enabled": true,
+        "indentWidth": 4,
+        "lineWidth": 100,
+        "indentStyle": "space"
+    },
+    "javascript": {
+        "formatter": {
+            "enabled": true,
+            "indentWidth": 4,
+            "lineWidth": 100
+        }
+    },
+    "css": {
+        "formatter": {
+            "enabled": true
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["package.json", "biome.json"],
+            "json": {
+                "formatter": {
+                    "expand": "auto"
+                }
+            }
+        }
+    ]
 }

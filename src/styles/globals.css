@@ -1,3 +1,292 @@
 @import "tailwindcss";
 
-/* You can add custom styles below */
+/* =====================================================
+   ENTERPRISE-GRADE THEME SYSTEM
+   Discord-inspired beige/brown palette with dark & light modes
+   ===================================================== */
+
+/* CSS Custom Properties for Theme Tokens */
+:root {
+    /* Dark Mode (default) */
+    --color-dark-bg: #0a0a0a;
+    --color-dark-panel: #22160e;
+    --color-dark-panel-light: #331f0d;
+    --color-dark-text: #fffdf7;
+    --color-dark-accent-1: #5e3d28;
+    --color-dark-accent-2: #6d482e;
+
+    /* Light Mode */
+    --color-light-bg: #f5f5f5;
+    --color-light-panel: #fffdf7;
+    --color-light-panel-light: #c0a78b;
+    --color-light-text: #331f0d;
+    --color-light-accent-1: #a7917b;
+    --color-light-accent-2: #b59a7c;
+
+    /* Status Indicators (consistent across modes) */
+    --color-success: #23a559;
+    --color-error: #ed4245;
+    --color-warning: #faa81a;
+    --color-neutral: #80848e;
+
+    /* Spacing & Border Radius (Discord-inspired) */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Typography Scale */
+    --font-sans: "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Light mode overrides */
+.light {
+    --color-bg: var(--color-light-bg);
+    --color-panel: var(--color-light-panel);
+    --color-panel-light: var(--color-light-panel-light);
+    --color-text: var(--color-light-text);
+    --color-accent-1: var(--color-light-accent-1);
+    --color-accent-2: var(--color-light-accent-2);
+}
+
+/* Dark mode (default) */
+:root {
+    --color-bg: var(--color-dark-bg);
+    --color-panel: var(--color-dark-panel);
+    --color-panel-light: var(--color-dark-panel-light);
+    --color-text: var(--color-dark-text);
+    --color-accent-1: var(--color-dark-accent-1);
+    --color-accent-2: var(--color-dark-accent-2);
+}
+
+/* =====================================================
+   SEMANTIC CSS CLASSES (using @apply)
+   Keep components clean, avoid utility bloat
+   ===================================================== */
+
+/* --- Cards & Panels --- */
+.panel {
+    @apply bg-[var(--color-panel)] text-[var(--color-text)] rounded-lg shadow-md;
+}
+
+.panel-light {
+    @apply bg-[var(--color-panel-light)] text-[var(--color-text)] rounded-lg;
+}
+
+.card {
+    @apply p-6 bg-[var(--color-panel)] text-[var(--color-text)] rounded-lg shadow-md;
+}
+
+.card-elevated {
+    @apply p-6 bg-[var(--color-panel)] text-[var(--color-text)] rounded-lg shadow-lg;
+}
+
+/* --- Buttons --- */
+.btn {
+    @apply inline-flex items-center justify-center font-medium transition-colors
+         disabled:opacity-50 disabled:cursor-not-allowed
+         focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-2)] focus:ring-offset-2
+         px-4 py-2 rounded-md;
+}
+
+.btn-primary {
+    @apply btn bg-[var(--color-accent-2)] text-[var(--color-bg)] hover:bg-[var(--color-panel-light)];
+}
+
+.btn-secondary {
+    @apply btn bg-[var(--color-panel-light)] text-[var(--color-text)] hover:bg-[var(--color-accent-1)];
+}
+
+.btn-ghost {
+    @apply btn bg-transparent text-[var(--color-text)] hover:bg-[var(--color-panel-light)] border border-[var(--color-accent-1)];
+}
+
+.btn-danger {
+    @apply btn bg-[var(--color-error)] text-white hover:opacity-90;
+}
+
+/* Button Sizes */
+.btn-sm {
+    @apply px-3 py-1 text-sm;
+}
+
+.btn-md {
+    @apply px-4 py-2 text-base;
+}
+
+.btn-lg {
+    @apply px-6 py-3 text-lg;
+}
+
+/* --- Input Fields --- */
+.input {
+    @apply w-full px-4 py-2 rounded-md bg-[var(--color-panel-light)] text-[var(--color-text)]
+         border border-[var(--color-accent-1)] focus:border-[var(--color-accent-2)]
+         focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-2)] focus:ring-opacity-50
+         placeholder-[var(--color-accent-1)] transition-colors;
+}
+
+.input-error {
+    @apply input border-[var(--color-error)] focus:ring-[var(--color-error)];
+}
+
+.input-search {
+    @apply input pl-10 rounded-full bg-[var(--color-panel)] border-transparent;
+}
+
+/* --- Typography --- */
+.text-h1 {
+    @apply text-4xl font-bold leading-tight;
+}
+
+.text-h2 {
+    @apply text-3xl font-bold leading-snug;
+}
+
+.text-h3 {
+    @apply text-2xl font-semibold leading-none;
+}
+
+.text-h4 {
+    @apply text-xl font-semibold;
+}
+
+.text-h5 {
+    @apply text-lg font-medium;
+}
+
+.text-h6 {
+    @apply text-base font-medium;
+}
+
+.text-body {
+    @apply text-base leading-relaxed;
+}
+
+.text-body-sm {
+    @apply text-sm leading-normal;
+}
+
+.text-caption {
+    @apply text-xs text-[var(--color-accent-1)] leading-tight;
+}
+
+.text-label {
+    @apply text-sm font-medium text-[var(--color-accent-2)] mb-1;
+}
+
+.text-muted {
+    @apply text-[var(--color-accent-1)];
+}
+
+/* --- Status Indicators --- */
+.status {
+    @apply w-3 h-3 rounded-full flex-shrink-0;
+}
+
+.status-success {
+    @apply status bg-[var(--color-success)];
+}
+
+.status-error {
+    @apply status bg-[var(--color-error)];
+}
+
+.status-warning {
+    @apply status bg-[var(--color-warning)];
+}
+
+.status-neutral {
+    @apply status bg-[var(--color-neutral)];
+}
+
+/* --- Badges --- */
+.badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+    @apply badge bg-[var(--color-accent-2)] text-[var(--color-bg)];
+}
+
+.badge-secondary {
+    @apply badge bg-[var(--color-panel-light)] text-[var(--color-text)] border border-[var(--color-accent-1)];
+}
+
+.badge-success {
+    @apply badge bg-[var(--color-success)] text-white;
+}
+
+.badge-error {
+    @apply badge bg-[var(--color-error)] text-white;
+}
+
+.badge-warning {
+    @apply badge bg-[var(--color-warning)] text-[var(--color-bg)];
+}
+
+.badge-neutral {
+    @apply badge bg-[var(--color-neutral)] text-white;
+}
+
+/* --- Avatars --- */
+.avatar {
+    @apply relative rounded-full bg-[var(--color-panel-light)] flex items-center justify-center
+         overflow-hidden flex-shrink-0;
+}
+
+.avatar-sm {
+    @apply avatar w-8 h-8 text-xs;
+}
+.avatar-md {
+    @apply avatar w-10 h-10 text-sm;
+}
+.avatar-lg {
+    @apply avatar w-16 h-16 text-lg;
+}
+.avatar-xl {
+    @apply avatar w-24 h-24 text-xl;
+}
+
+.avatar-img {
+    @apply w-full h-full object-cover;
+}
+
+.avatar-status {
+    @apply absolute bottom-0 right-0 w-3 h-3 border-2 border-[var(--color-panel)] rounded-full;
+}
+
+/* --- Scrollbar Styling (Discord-like) --- */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent-1);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-2);
+}
+
+/* --- Base App Styling --- */
+body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)] font-sans antialiased;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[var(--color-accent-2)];
+}
+
+/* Selection styling */
+::selection {
+    @apply bg-[var(--color-accent-2)] text-[var(--color-bg)];
+}
